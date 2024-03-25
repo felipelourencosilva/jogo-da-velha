@@ -42,6 +42,12 @@ function playGame(boxNum) {
           break
       }
 
+      gameArray = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+      ]
+
       setTimeout(() => {
         resultText.textContent = ''
         let boxes = document.querySelectorAll('.box')
@@ -50,13 +56,15 @@ function playGame(boxNum) {
             box.removeChild(box.firstChild)
           }
         })
+
         gameArray = [
           [0, 0, 0],
           [0, 0, 0],
           [0, 0, 0]
         ]
-
+        
         symbol = 2
+      
       }, 1000)
 
       let XScore = document.getElementById('x-score')

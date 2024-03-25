@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da velha</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Jogo da velha</h1>
+    <div class="score">
+      <p id="x-score">X = 0</p>
+      <p id="o-score">O = 0</p>
+    </div>
+    <div id="jogo-da-velha">
+      <div onclick="playGame('00')" class="box b-top b-left" id="00"></div>
+      <div onclick="playGame('01')" class="box b-top" id="01"></div>
+      <div onclick="playGame('02')" class="box b-top b-right" id="02"></div>
+      <div onclick="playGame('10')" class="box b-mid b-left" id="10"></div>
+      <div onclick="playGame('11')" class="box b-mid" id="11"></div>
+      <div onclick="playGame('12')" class="box b-mid b-right" id="12"></div>
+      <div onclick="playGame('20')" class="box b-bottom b-left" id="20"></div>
+      <div onclick="playGame('21')" class="box b-bottom" id="21"></div>
+      <div onclick="playGame('22')" class="box b-bottom b-right" id="22"></div>
+    </div>
+    <p id="result">Clique em alguma casa para começar ✅</p>
+    <script src="script.js"></script>
+  </body>
+</html>

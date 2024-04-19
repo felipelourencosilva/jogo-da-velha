@@ -16,74 +16,7 @@ function playGame(boxNum) {
   resultText = document.getElementById('result')
   resultText.textContent = ''
 
-  let [x, y] = boxNum.split('')
-
-  if (gameArray[x][y] === 0) {
-    symbol === 1 ? (symbol = 2) : (symbol = 1)
-    gameArray[x][y] = symbol
-
-    const symbolHTML = (document.createElement('p').textContent = `${
-      symbol === 1 ? 'X' : 'O'
-    }`)
-    document.getElementById(boxNum).append(symbolHTML)
-
-    if (checkResult()) {
-      switch (checkResult()) {
-        case 1:
-          resultText.textContent = '"X" GANHOU! ✅🎉🎉🎉'
-          XWins++
-          break
-        case 2:
-          resultText.textContent = '"O" GANHOU! ✅🎉🎉🎉'
-          OWins++
-          break
-        case 3:
-          resultText.textContent = 'O JOGO EMPATOU!'
-          break
-      }
-
-      gameArray = [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
-      ]
-
-      setTimeout(() => {
-        resultText.textContent = ''
-        let boxes = document.querySelectorAll('.box')
-        boxes.forEach(box => {
-          if (box.hasChildNodes()) {
-            box.removeChild(box.firstChild)
-          }
-        })
-
-        gameArray = [
-          [0, 0, 0],
-          [0, 0, 0],
-          [0, 0, 0]
-        ]
-        
-        symbol = 2
-      
-      }, 1000)
-
-      let XScore = document.getElementById('x-score')
-      XScore.textContent = `X = ${XWins}`
-      let OScore = document.getElementById('o-score')
-      OScore.textContent = `O = ${OWins}`
-
-      if (XWins > OWins) {
-        XScore.style.border = '3px solid hsl(135, 100%, 75%)'
-        OScore.style.border = '3px solid hsl(0, 0%, 60%)'
-      } else if(OWins > XWins){
-        OScore.style.border = '3px solid hsl(135, 100%, 75%)'
-        XScore.style.border = '3px solid hsl(0, 0%, 60%)'
-      } else {
-        XScore.style.border = '3px solid hsl(0, 0%, 60%)'
-        OScore.style.border = '3px solid hsl(0, 0%, 60%)'
-      }
-    }
-  }
+  gameOperations(boxNum)
 }
 
 // function that check if the player won, lost or drew
@@ -141,4 +74,78 @@ function checkResult() {
   }
 
   return false
+}
+
+function gameOperations(boxNum) {
+  let [x, y] = boxNum.split('')
+
+  if (gameArray[x][y] === 0) {
+    symbol === 1 ? (symbol = 2) : (symbol = 1)
+    gameArray[x][y] = symbol
+
+    const symbolHTML = (document.createElement('p').textContent = `${
+      symbol === 1 ? 'X' : 'O'
+    }`)
+    document.getElementById(boxNum).append(symbolHTML)
+
+    let result = checkResult()
+
+    if (!!result) {
+      switch (result) {
+        case 1:
+          resultText.textContent = '"X" GANHOU! ✅🎉🎉🎉'
+          XWins++
+          break
+        case 2:
+          resultText.textContent = '"O" GANHOU! ✅🎉🎉🎉'
+          OWins++
+          break
+        case 3:
+          resultText.textContent = 'O JOGO EMPATOU!'
+          break
+      }
+
+      gameArray = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+      ]
+
+      setTimeout(() => {
+        resultText.textContent = ''
+        let boxes = document.querySelectorAll('.box')
+        boxes.forEach(box => {
+          if (box.hasChildNodes()) {
+            box.removeChild(box.firstChild)
+          }
+        })
+
+        gameArray = [
+          [0, 0, 0],
+          [0, 0, 0],
+          [0, 0, 0]
+        ]
+        
+        symbol = 2
+      
+      }, 1000)
+
+      let XScore = document.getElementById('x-score')
+      XScore.textContent = `X = ${XWins}`
+      let OScore = document.getElementById('o-score')
+      OScore.textContent = `O = ${OWins}`
+
+      if (XWins > OWins) {
+        XScore.style.border = '3px solid hsl(135, 100%, 75%)'
+        OScore.style.border = '3px solid hsl(0, 0%, 60%)'
+      } else if(OWins > XWins){
+        OScore.style.border = '3px solid hsl(135, 100%, 75%)'
+        XScore.style.border = '3px solid hsl(0, 0%, 60%)'
+      } else {
+        XScore.style.border = '3px solid hsl(0, 0%, 60%)'
+        OScore.style.border = '3px solid hsl(0, 0%, 60%)'
+      }
+
+    }
+  }
 }
